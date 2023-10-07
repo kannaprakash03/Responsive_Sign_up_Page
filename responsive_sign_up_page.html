@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #595f5f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 400px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .social-buttons {
+        margin-bottom: 20px;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #error-message {
+        color: red;
+        margin-top: 10px;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <div class="social-buttons">
+        <img src="fb.png" ,width="30" height="30" />
+        <img src="insta.jpg" ,width="50" height="50" />
+        <img src="google.png" ,width="50" height="50" />
+      </div>
+      <div class="or">OR</div>
+      <form id="signup-form">
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <u><p>forget password</p></u>
+        <button type="submit">Log in</button>
+      </form>
+      <div id="error-message"></div>
+      <p>Already have an account? <a href="#">Sign Up</a></p>
+    </div>
+
+    <script>
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+          const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+          if (!email.match(emailRegex)) {
+            showError("Invalid email format");
+          } else if (!password.match(passwordRegex)) {
+            showError(
+              "Password must be at least 8 characters and contain an uppercase letter, a special character, and a number"
+            );
+          } else {
+            alert("Sign up successful");
+            // You can add code here to send the data to your server for actual sign-up
+          }
+        });
+
+      function showError(message) {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = message;
+      }
+    </script>
+  </body>
+</html>
